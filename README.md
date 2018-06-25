@@ -1,6 +1,16 @@
-# VerizonDatePicker
+# DatePicker
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.
+
+## Decription
+
+Date picker implemented using ngb-datepicker and uses moment library for date functions
+1. Displays date picker in popup modal
+2. Reads the JSON input dates and highlights them
+3. Disables Weekends (Saturday & Sunday)
+4. Disables all dates older than First date provided in JSON input
+5. On Click of highlighted dates, displays time slots associated
+6. On Click of timeslot displays formatted date text
 
 ## Development server
 
