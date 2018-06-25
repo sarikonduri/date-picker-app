@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalCenterTitle">Date Picker</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"  (click)="activeModal.close()">
+    <span aria-hidden="true" >&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <h6>Simply select a new installation date</h6>
+  <ngb-datepicker #dp [(ngModel)]="date"  [dayTemplate]="customDay"
+                  (select)="select($event)" [markDisabled]="markDisabled" [firstDayOfWeek]="0"></ngb-datepicker>
+
+  <ng-template #customDay let-date="date" let-currentMonth="currentMonth" let-selected="selected" let-disabled="disabled" let-focused="focused">
+    <span class="custom-day" [class.highlight]="isValid(date)" [class.focused]="focused"
+          [class.bg-primary]="selected" [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+      {{ date.day }}
+    </span>
+  </ng-template>
+
+  <div *ngIf="timeSlots.length">
+    <h6>Select a time</h6>
+    <div *ngFor="let slot of timeSlots">
+      <label>
+        <input type="radio" [(ngModel)]="selectedTimeSlot" name="timeslot" [value]="slot"/>
+        {{slot.startTime}} - {{slot.endTime}} {{slot.timeSlotDescription}}
+      </label>
+    </div>
+  </div>
+
+  <div *ngIf="selectedTimeSlot">
+    <h6>Install date and time</h6>
+    <P>{{formatSlot(selectedTimeSlot)}}</P>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="activeModal.close()">Close</button>
+</div>
+
+
+
